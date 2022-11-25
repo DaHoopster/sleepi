@@ -1,0 +1,120 @@
+<!doctype html>
+<head>
+  <title>White Noise Machine</title>
+  <style>
+    .container {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      overflow: auto;
+      column-gap: 20px;
+      row-gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
+      grid-auto-rows: 400px;
+      grid-auto-flow: dense;
+      justify-items: center;
+      justify-content: center;
+    };
+
+    .item {
+      justify-self: center;
+    }
+
+    .sound-control {
+      align-items: center;
+      appearance: none;
+      background-color: #3EB2FD;
+      background-image: linear-gradient(1deg, #4F58FD, #149BF3 99%);
+      background-size: calc(100% + 20px) calc(100% + 20px);
+      border-radius: 100px;
+      border-width: 0;
+      box-shadow: none;
+      box-sizing: border-box;
+      color: #FFFFFF;
+      cursor: pointer;
+      display: inline-flex;
+      font-family: CircularStd,sans-serif;
+      font-size: 3rem;
+      height: 400px;
+      min-width: 600px;
+      justify-content: center;
+      line-height: 1.5;
+      padding: 6px 20px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      transition: background-color .2s,background-position .2s;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: top;
+      white-space: nowrap;
+    }
+
+    .sound-track:active,
+    .sound-track:focus {
+      outline: none;
+    }  
+
+    .sound-track:hover {
+      background-position: -20px -20px;
+    }
+
+    .sound-track:focus:not(:active) {
+      box-shadow: rgba(40, 170, 255, 0.25) 0 0 0 .125em;
+    }
+
+    form {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+
+</head>
+<body>
+  <div class="container">
+    <div class="item">
+      <button id="start_range_hood" class="sound-button sound-control">Range Hood</button>
+    </div>
+    <div class="item">
+      <button id="start_microwave" class="sound-button sound-control">Microwave</button>
+    </div>
+    <div class="item">
+      <button id="start_thunderstorm" class="sound-button sound-control">Thunderstorm</button>
+    </div>
+    <div class="item">
+      <button id="start_brook" class="sound-button sound-control">Brook</button>
+    </div>
+    <div class="item">
+      <button id="start_forest" class="sound-button sound-control">Forest</button>
+    </div>
+    <div class="item">
+      <button id="start_ocean_waves" class="sound-button sound-control">Ocean Waves</button>
+    </div>
+    <div class="item">
+      <button id="stop" class="sound-button sound-control">🛑</button>
+    </div>
+  </div>
+
+  <form id="white-noise-control" action="/control" method="post">
+    <input type="hidden" id="sound-track" name="control_action"/>
+    <input type="hidden" id="loop" name="loop" value="2" /> <!-- each sound track is 30 minutes in length, loop of 2 equals to 1 hour -->
+  </form>
+
+  <script>
+    const soundTrackSelect = (e) => {
+      const elemId = e.currentTarget.id;
+      
+      const soundTrackInputElem = document.querySelector('#sound-track');
+      soundTrackInputElem.value = elemId;
+
+      const theForm = document.querySelector('#white-noise-control');
+      theForm.submit();
+    };
+
+    // attach the event listener to all ".item"
+    document.querySelectorAll('.sound-button').forEach((elem) => {
+      elem.addEventListener('click', soundTrackSelect);
+    });
+  </script>
+</body>
