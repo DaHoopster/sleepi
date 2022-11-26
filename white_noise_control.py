@@ -11,7 +11,7 @@ CMD_ALSA_ARG1 = '-ao'
 CMD_ALSA_ARG2 = 'alsa:device=hw=0'
 CMD_TAIL = '</dev/null >/dev/null 2>&1'
 
-SOUND_FILE_ROOT_PATH = '/home/pi/Documents/white-noise/'
+SOUND_FILE_ROOT_PATH = '/home/pi/Documents/sleepi/'
 WHITE_NOISES = {
     'range_hood': 'range-hood-white-noise.mp3',
     'microwave': 'microwave-white-noise.mp3',
