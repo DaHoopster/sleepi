@@ -8,6 +8,8 @@ After a few days of tinkering, Sleepi was created and my first son was sleeping 
 
 I'd like to share the code and setup instructions with fellow (new)dads who want to make the baby bonding time a bit more fun.
 
+WARNING!!! The python code is very janky, not something I will show off, but it is  _working_ code created with very reasonable effort.
+
 ## What you need
 
 * Raspberry Pi x 1 (though I am using the original Raspberry Pi, newer ones will probably work better)
@@ -31,8 +33,17 @@ You need python3, whether it's a system wide python3 package or a version of pyt
 1. Check out the code to a directory in your Raspberry Pi (e.g. /home/pi/Projects)
 
 ```
-cd ~/gadgets
+cd ~/Projects
 git clone git@github.com:DaHoopster/sleepi.git
+```
+
+Or download the project zip file from github
+
+```
+cd ~/Projects
+wget https://github.com/DaHoopster/sleepi/archive/refs/heads/main.zip
+unzip main.zip
+mv sleepi-main sleepi
 ```
 
 2. Set up Python virtual env and pull down the dependencies
